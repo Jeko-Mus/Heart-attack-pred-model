@@ -3,8 +3,8 @@ import numpy as np
 import pandas as pd
 from PIL import Image
 from heart_attack_predictions import pred_heart
-from sklearn.ensemble import RandomForestClassifier
-model = RandomForestClassifier(n_estimators=100, max_depth=4)
+from xgboost import XGBClassifier
+model = XGBClassifier(booster='gblinear', eta = 0.1)
 
 df = pd.read_csv('heart.csv')
 
