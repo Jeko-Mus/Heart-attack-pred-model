@@ -1,8 +1,8 @@
 import argparse
 import numpy as np
 from heart_attack_predictions import pred_heart
-from lightgbm import LGBMClassifier
-model = LGBMClassifier
+from xgboost import XGBClassifier
+model = XGBClassifier(booster='gblinear', eta = 0.1)
 
 
 if __name__ == "__main__":
@@ -21,9 +21,9 @@ if __name__ == "__main__":
     parser.add_argument('exng', type=int, choices=[0, 1] , help='exercise induced angina (1 = yes; 0 = no)')
 
     parser.add_argument('oldpeak', type=float, help='previous peak')
-    parser.add_argument('slp', type=int, choices=[0, 1, 2] , help='slope')
+    parser.add_argument('slp', type=int, choices=[0, 1, 2] , help='slope, between 0 and 2')
     parser.add_argument('caa', type=int, choices=[0, 1, 2, 3] , help='number of major vessels (0-3)')
-    parser.add_argument('thall', type=int, choices=[0, 1, 2, 3] , help='Thall rate')
+    parser.add_argument('thall', type=int, choices=[0, 1, 2, 3] , help='Thall rate, between 0 and 3')
     args = parser.parse_args()
     
     args_list = [args.age, args.sex, args.cp, args.trtbps, args.chol, args.fbs, args.restecg, args.thalachh, args.exng, args.oldpeak, 
