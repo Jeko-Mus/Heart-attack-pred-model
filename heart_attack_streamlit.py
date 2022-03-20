@@ -1,6 +1,7 @@
 import streamlit as st
 import numpy as np
 import pandas as pd
+from PIL import Image
 from heart_attack_predictions import pred_heart
 from sklearn.ensemble import RandomForestClassifier
 model = RandomForestClassifier(n_estimators=100, max_depth=4)
@@ -8,19 +9,25 @@ model = RandomForestClassifier(n_estimators=100, max_depth=4)
 df = pd.read_csv('heart.csv')
 
 st.markdown('# Heart attack prediction model')
-st.markdown('##### Aim: Various models are accessed in order to find the best performing model to predict whether a patient will develop cancer')
-st.markdown('##### Data: 304 patients data used')
+st.write('Aim: Various models are accessed in order to find the best performing model to predict whether a patient will develop cancer')
 
-st.markdown('#### Data: Heart-attack likeliness')
+st.write('Data: 304 patients data used')
 
-st.bar_chart(df.output.value_counts(),100,350)
+st.markdown('##### Data: Male vs Female heart attack likelihoodness')
+image = Image.open('male_female_hrt.png')
+st.image(image)
 
-st.markdown('#### Number of female vs. male patients')
-st.bar_chart(df.sex.value_counts(),100,350)
+st.markdown('##### Data: Age Graph')
+image2 = Image.open('ages.png')
+st.image(image2)
 
+st.markdown('')
+st.markdown('')
 st.markdown('##### Model Accuracy Scores (original vs hyper-parameter vs. enhanced (incl hyper-parameters')
-
-
+image3 = Image.open('accuracy_vs_models_nmbrs.png')
+st.image(image3)
+image4 = Image.open('accuracy_vs_models.png')
+st.image(image4)
 
 
 st.markdown('#### Best model: Random forest Classifier')
@@ -61,6 +68,11 @@ vars_list = np.array(vars_list)
 vars_list = vars_list.reshape((1, -1))
 pred = pred_heart(vars_list)
 
-st.markdown(f'## Likelihood of a heart attack is {pred}')
+st.markdown('#### Model prediction:')
+if pred == 1:
+    st.markdown('The likelihood of a heart attack occuring is high')
+else:
+    st.markdown('The likelihood of a heart attack occuring is low')
+
 
 
