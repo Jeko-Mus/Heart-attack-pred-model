@@ -9,11 +9,11 @@ model = XGBClassifier(booster='gblinear', eta = 0.1)
 df = pd.read_csv('heart.csv')
 
 st.markdown('# Heart attack prediction model')
-st.write('Aim: Various models are accessed in order to find the best performing model to predict whether a patient will develop cancer')
+st.write('Aim: Various models are accessed in order to find the best performing model to predict the likelihood of a patient getting a heart attack')
 
 st.write('Data: 304 patients data used')
 
-st.markdown('##### Data: Male vs Female heart attack likelihoodness')
+st.markdown('##### Data: Male vs Female heart attack likelihood')
 image = Image.open('male_female_hrt.png')
 st.image(image)
 
@@ -30,8 +30,8 @@ image4 = Image.open('accuracy_vs_models.png')
 st.image(image4)
 
 
-st.markdown('#### Best model: Random forest Classifier')
-st.markdown('The random forest model classifier can be used below to predict the outcome of cancer or not')
+st.markdown('#### Best model: XG Boost Classifier')
+st.markdown('The XG Boost model classifier can be used below to predict the outcome of heart attack or not')
 
 
 st.markdown('Please input Patient data below for condition prediciton')
